@@ -1,0 +1,7 @@
+{
+  "name": "create-polkadot-dapp",
+  "version": "4.5.1",
+  "main": "index.js",
+  "author": "cornholio <0@mcornholio.ru>",
+  "license": "MIT"
+}
