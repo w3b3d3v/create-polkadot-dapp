@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { ExitPromptError } from "@inquirer/core";
 import { inquireDappData } from "#src/util/dappData";
 import { spawnTemplate } from "#src/util/spawnTemplate";

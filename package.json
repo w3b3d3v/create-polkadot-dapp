@@ -19,7 +19,9 @@
     "lint": "npx eslint ./src/ --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npx eslint ./src/ --ext .js,.jsx,.ts,.tsx --fix"
   },
-  "bin": "dist/bin/main.js",
+  "bin": {
+    "create-polkadot-dapp": "src/bin/main.js"
+  },
   "imports": {
     "#src/*": "./src/*.js"
   }

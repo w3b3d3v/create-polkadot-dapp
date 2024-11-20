@@ -19,3 +19,12 @@ _FIXME: the package is yet to be published_
 * react-tailwind-solidity: a unified setup for developing Solidity smart contracts on Asset Hub
 * papi-nodejs: pure server-side application with polkadot-api
 
+## Development
+
+### How to spawn template from local copy
+```
+cd <path-to-create-polkadot-dapp>
+yarn install && yarn build
+cd <path-where-to-spawn-the-app>
+npx --yes --package=<path-to-create-polkadot-dapp>/dist create-polkadot-dapp
+```
