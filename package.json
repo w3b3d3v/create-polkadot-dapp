@@ -1,7 +1,26 @@
 {
   "name": "create-polkadot-dapp",
-  "version": "4.5.1",
-  "main": "index.js",
-  "author": "cornholio <0@mcornholio.ru>",
-  "license": "MIT"
+  "version": "0.0.1",
+  "author": "Yuri Volkov <yuri@parity.io>",
+  "license": "MIT",
+  "packageManager": "yarn@4.5.1",
+  "devDependencies": {
+    "@eng-automation/js-style": "^3.1.0",
+    "type-fest": "^4.27.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@inquirer/core": "^10.0.1",
+    "@inquirer/prompts": "^7.0.1",
+    "@types/node": "20"
+  },
+  "scripts": {
+    "build": "tsc && rm -rf dist/templates && cp -r templates dist/templates",
+    "lint": "npx eslint ./src/ --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npx eslint ./src/ --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "bin": "dist/bin/main.js",
+  "imports": {
+    "#src/*": "./src/*.js"
+  }
 }
