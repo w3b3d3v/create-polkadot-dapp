@@ -1,9 +1,8 @@
 import { spawnAndWait } from "#src/util/childProcess";
+import { DappData } from "#src/util/dappData";
 import fs from "fs/promises";
 import path from "path";
 import { PackageJson } from "type-fest";
-
-import { DappData } from "../types";
 
 export async function spawnTemplate(dappData: DappData): Promise<void> {
   const targetDir = path.join(process.cwd(), dappData.name);

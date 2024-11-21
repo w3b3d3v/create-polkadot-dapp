@@ -1,12 +1,18 @@
 import { input, select } from "@inquirer/prompts";
-import { DappData, Template } from "#src/types";
+import { configs, TemplateConfig, TemplateNames } from "#src/templateConfigs/index";
+
+export type DappData = {
+  name: string;
+  template: TemplateNames;
+  config: TemplateConfig;
+};
 
 export async function inquireDappData(): Promise<DappData> {
   const name = await input({ message: "Project name", required: true, default: "my-polkadot-dapp" });
-  const template = await select<Template>({
+  const template: TemplateNames = await select<TemplateNames>({
     message: "Select template",
-    choices: ["react-tailwind"],
+    choices: Object.keys(configs),
   });
 
-  return { name, template };
+  return { name, config: configs[template], template };
 }

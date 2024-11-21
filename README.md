@@ -28,3 +28,12 @@ yarn install && yarn build
 cd <path-where-to-spawn-the-app>
 npx --yes --package=<path-to-create-polkadot-dapp>/dist create-polkadot-dapp
 ```
+
+### Adding new template
+Add sources to `templates/` directory. These will be copied to target directory.  
+Add new configuration to `src/templateConfigs/` and export it from `index.ts`. The exported name must match the directory name in `templates/`.
+
+### Back sync
+It can be more convenient to develop template code outside of `create-polkadot-dapp`.  
+Use `yarn back-sync --source <spawned_repo_path> --template <template_name>` to sync files from a spawned repo back into the template.  
+`backSyncPatterns` in template configuration defines an array of regexp for files that are synced.  
