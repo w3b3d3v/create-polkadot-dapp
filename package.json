@@ -14,7 +14,9 @@
   "dependencies": {
     "@inquirer/core": "^10.0.1",
     "@inquirer/prompts": "^7.0.1",
-    "@types/node": "20"
+    "@types/node": "20",
+    "chalk": "^4.1.2",
+    "chalk-template": "^0.5.0"
   },
   "scripts": {
     "build": "tsc && rm -rf dist/templates && cp -r templates dist/templates",

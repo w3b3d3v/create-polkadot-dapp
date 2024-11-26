@@ -1,12 +1,15 @@
-import reactTailwind from "./react-tailwind";
+import reactPapiTailwind from "./react-papi-tailwind";
+import reactSolidity from "./react-solidity";
 
 export type TemplateConfig = {
   setupPapi: boolean;
   backSyncPatterns: RegExp[];
+  instructions: string;
 };
 
 export const configs: Record<string, TemplateConfig> = {
-  "react-tailwind": reactTailwind,
+  "react-papi-tailwind": reactPapiTailwind,
+  "react-solidity": reactSolidity,
 };
 
 export type TemplateNames = keyof typeof configs;

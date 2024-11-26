@@ -1,23 +1,33 @@
 import { spawnAndWait } from "#src/util/childProcess";
 import { DappData } from "#src/util/dappData";
+import { colors as c, success } from "#src/util/log";
 import fs from "fs/promises";
 import path from "path";
 import { PackageJson } from "type-fest";
 
 export async function spawnTemplate(dappData: DappData): Promise<void> {
   const targetDir = path.join(process.cwd(), dappData.name);
+  console.log(`${c.secondary("\nCreating repository in")} ${c.accent(targetDir)}\n`);
   const templatesDir = path.resolve(__dirname, "../..", "templates");
 
   await copyTemplate(dappData, targetDir, templatesDir);
   await updateFiles(dappData, targetDir);
   await installDeps(targetDir);
-  await setupPapi(targetDir);
+  if (dappData.config.setupPapi) {
+    await setupPapi(targetDir);
+  }
 
-  console.log(`\nSuccess! Type "cd ${dappData.name} && npm run dev" to start hacking`);
+  console.log(
+    success("Successfully created repository!\n\n") +
+      c.secondary("Go to repository:\n") +
+      c.code(`cd ${dappData.name}`) +
+      "\n" +
+      dappData.config.instructions,
+  );
 }
 
 async function copyTemplate(dappData: DappData, targetDir: string, templatesDir: string): Promise<void> {
-  console.log(`Copying the template ${dappData.template}`);
+  console.log(`${c.primary("Copying the template")} ${c.accent(dappData.template)}${c.primary("...")}`);
 
   try {
     await fs.cp(path.join(templatesDir, dappData.template), targetDir, {
@@ -27,14 +37,14 @@ async function copyTemplate(dappData: DappData, targetDir: string, templatesDir:
     });
   } catch (error) {
     if (error instanceof Error && "code" in error && error.code === "ERR_FS_CP_EEXIST") {
-      console.log(`Error: directory ${dappData.name} already exists`);
+      console.error(`Error: directory ${dappData.name} already exists`);
       process.exit(1);
     }
   }
 }
 
 async function updateFiles(dappData: DappData, targetDir: string): Promise<void> {
-  console.log("Updating template files");
+  console.log(c.primary("Updating template files..."));
 
   const pkgJsonPath = path.join(targetDir, "package.json");
   const pkgJsonContent = JSON.parse(await fs.readFile(pkgJsonPath, "utf8")) as PackageJson;
@@ -45,13 +55,13 @@ async function updateFiles(dappData: DappData, targetDir: string): Promise<void>
 }
 
 async function installDeps(targetDir: string): Promise<void> {
-  console.log("Installing dependencies");
+  console.log(c.primary("Installing dependencies..."));
 
-  await spawnAndWait("npm", ["install"], { cwd: targetDir });
+  await spawnAndWait("pnpm", ["install"], { cwd: targetDir });
 }
 
 async function setupPapi(targetDir: string): Promise<void> {
-  console.log("Setting up polkadot-api");
+  console.log(c.primary("Setting up polkadot-api..."));
 
   await spawnAndWait("npx", ["papi", "add", "--skip-codegen", "-n", "paseo", "paseo"], { cwd: targetDir });
   await spawnAndWait("npx", ["papi", "add", "--skip-codegen", "-n", "paseo_asset_hub", "paseo_asset_hub"], {

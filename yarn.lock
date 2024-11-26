@@ -995,7 +995,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0":
+"chalk-template@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "chalk-template@npm:0.5.0"
+  dependencies:
+    chalk: "npm:^4.1.2"
+  checksum: 10c0/7816607667e7ced9e069428b99669056a422f2610a36c7cf481a6d4f0ddd267fdee6eb7aaacadea83bb85af60f70d150fe0489372e190602c8335eb342161ca3
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^4.0.0, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -1086,6 +1095,8 @@ __metadata:
     "@inquirer/core": "npm:^10.0.1"
     "@inquirer/prompts": "npm:^7.0.1"
     "@types/node": "npm:20"
+    chalk: "npm:^4.1.2"
+    chalk-template: "npm:^0.5.0"
     chokidar: "npm:^4.0.1"
     commander: "npm:^12.1.0"
     type-fest: "npm:^4.27.0"
