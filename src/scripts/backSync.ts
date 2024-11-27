@@ -1,9 +1,11 @@
 import { availableTemplates, configs, TemplateNames } from "#src/templateConfigs/index";
+import { colors as c, success } from "#src/util/log";
 import chokidar from "chokidar";
 import { Option, program } from "commander";
 import fs from "fs";
 import * as process from "node:process";
 import path from "path";
+import { debuglog } from "util";
 
 program
   .addOption(new Option("-s, --source <path>", "Repository path where to sync files from").makeOptionMandatory(true))
@@ -33,41 +35,51 @@ const watcher = chokidar.watch(options.source, {
 });
 
 const targetPath = path.join(process.cwd(), "templates", options.template);
+const formatPath = (val: string) => c.accent("/" + val);
 
-watcher.on("change", (updPath: string) => {
-  fs.cp(path.join(options.source, updPath), path.join(targetPath, updPath), (err) => {
+if (debuglog("back-sync").enabled) {
+  watcher.on("raw", (event, val, details) => {
+    console.log(event, val, details);
+  });
+}
+
+watcher.on("change", (val: string) => {
+  fs.cp(path.join(options.source, val), path.join(targetPath, val), (err) => {
     if (err) {
-      console.error(`Failed to update ${updPath}`, err);
+      console.error(`Failed to update ${val}`, err);
     } else {
-      console.log(`${updPath} updated`);
+      console.log(success(`${formatPath(val)} updated`));
     }
   });
 });
-watcher.on("add", (updPath: string) => {
-  fs.cp(path.join(options.source, updPath), path.join(targetPath, updPath), (err) => {
+
+watcher.on("add", (val: string) => {
+  fs.cp(path.join(options.source, val), path.join(targetPath, val), (err) => {
     if (err) {
-      console.error(`Failed to create file ${updPath}`, err);
+      console.error(`Failed to create file ${val}`, err);
     } else {
-      console.log(`Created ${updPath}`);
+      console.log(success(`Created ${formatPath(val)}`));
     }
   });
 });
-watcher.on("addDir", (updPath: string) => {
-  fs.mkdir(path.join(targetPath, updPath), (err) => {
+
+watcher.on("addDir", (val: string) => {
+  fs.mkdir(path.join(targetPath, val), (err) => {
     if (err) {
-      console.error(`Failed to create dir ${updPath}`, err);
+      console.error(`Failed to create dir ${val}`, err);
     } else {
-      console.log(`Created dir ${updPath}`);
+      console.log(success(`Created dir ${formatPath(val)}`));
     }
   });
 });
+
 if (options.rm) {
-  const unlinkHandler = (updPath: string) => {
-    fs.rm(path.join(targetPath, updPath), { recursive: true }, (err) => {
+  const unlinkHandler = (val: string) => {
+    fs.rm(path.join(targetPath, val), { recursive: true }, (err) => {
       if (err) {
-        console.error(`Failed remove ${updPath}`, err);
+        console.error(`Failed remove ${val}`, err);
       } else {
-        console.log(`Removed ${updPath}`);
+        console.log(success(`Removed ${formatPath(val)}`));
       }
     });
   };

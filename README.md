@@ -10,10 +10,11 @@ _FIXME: the package is yet to be published_
 
 ## Templates
 
-* [react-tailwind](./templates/react-tailwind):<br/>
-  React front-end app with [ReactiveDOT](https://reactivedot.dev) + [dotconnect](https://dotconnect.dev/) for chain and wallet interactions.<br/>
+* [react-papi-tailwind](./templates/react-papi-tailwind):<br/>
+  React front-end app with [PAPI](papi.how) [ReactiveDOT](https://reactivedot.dev) + [dotconnect](https://dotconnect.dev/) for chain and wallet interactions.<br/>
   [Tailwind CSS](https://tailwindcss.com) + [Tailwind UI](https://tailwindui.com/). <br/>
   [Vite](https://vite.dev/) for dev tooling.
+* react-solidity
 
 ## Planned templates
 * react-tailwind-solidity: a unified setup for developing Solidity smart contracts on Asset Hub

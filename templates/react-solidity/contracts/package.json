@@ -1,0 +1,13 @@
+{
+  "name": "contracts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "npx tsc && node dist/exportPinnedContracts.js"
+  },
+  "main": "dist/index.js",
+  "devDependencies": {
+    "ethers": "^6.13.4"
+  }
+}

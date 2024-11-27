@@ -1,7 +1,7 @@
-# react-tailwind template
+# react-papi-tailwind template
 
 This template describes a React front-end app with
-* [ReactiveDOT](https://reactivedot.dev) + [dotconnect](https://dotconnect.dev/) for chain and wallet interactions.<br/>
+* [PAPI](papi.how) + [ReactiveDOT](https://reactivedot.dev) + [dotconnect](https://dotconnect.dev/) for chain and wallet interactions.<br/>
 * [Tailwind CSS](https://tailwindcss.com) + [Tailwind UI](https://tailwindui.com/). <br/>
 * [Vite](https://vite.dev/) for dev tooling.
 
