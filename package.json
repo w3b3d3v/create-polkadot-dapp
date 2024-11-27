@@ -1,6 +1,6 @@
 {
   "name": "create-polkadot-dapp",
-  "version": "0.0.1",
+  "version": "0.0.0-set-from-ci",
   "author": "Yuri Volkov <yuri@parity.io>",
   "license": "MIT",
   "packageManager": "yarn@4.5.1",
@@ -21,7 +21,7 @@
   "scripts": {
     "do-pack": "cd dist && yarn pack",
     "do-publish": "cd dist && yarn publish",
-    "build": "tsc && rm -rf dist/templates && cp -r templates dist/templates && cp yarn.lock dist/",
+    "build": "tsc && rm -rf dist/templates && cp -r templates dist/templates && cp yarn.lock dist/ && cp README.md dist/",
     "back-sync": "node dist/src/scripts/backSync.js",
     "lint": "npx eslint ./src/ --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npx eslint ./src/ --ext .js,.jsx,.ts,.tsx --fix"

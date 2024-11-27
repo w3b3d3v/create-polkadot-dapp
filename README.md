@@ -3,10 +3,8 @@
 Create Polkadot DApp in one command:
 
 ```
-npx create-polkadot-dapp
+npx create-polkadot-dapp@latest
 ```
-_FIXME: the package is yet to be published_
-
 
 ## Templates
 
@@ -14,7 +12,7 @@ _FIXME: the package is yet to be published_
   React front-end app with [PAPI](papi.how) [ReactiveDOT](https://reactivedot.dev) + [dotconnect](https://dotconnect.dev/) for chain and wallet interactions.<br/>
   [Tailwind CSS](https://tailwindcss.com) + [Tailwind UI](https://tailwindui.com/). <br/>
   [Vite](https://vite.dev/) for dev tooling.
-* react-solidity
+* react-solidity a monorepo for smart contracts for AssetHub and a React, [Tailwind CSS](https://tailwindcss.com) and [ethers](https://docs.ethers.org/v6/)
 
 ## Planned templates
 * react-tailwind-solidity: a unified setup for developing Solidity smart contracts on Asset Hub
