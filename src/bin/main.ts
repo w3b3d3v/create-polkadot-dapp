@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { ExitPromptError } from "@inquirer/core";
 import { inquireDappData } from "#src/util/dappData";
+import { ensurePnpm } from "#src/util/ensurePnpm";
 import { spawnTemplate } from "#src/util/spawnTemplate";
 
 /* This is somewhat a hack to automatically include
@@ -11,6 +12,9 @@ import * as pkg from "../../package.json";
 
 (async () => {
   console.log(`${pkg.name} ${pkg.version}`);
+
+  await ensurePnpm();
+
   const dappData = await inquireDappData();
 
   await spawnTemplate(dappData);
