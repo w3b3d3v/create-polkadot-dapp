@@ -6,6 +6,8 @@ Create Polkadot DApp in one command:
 npx create-polkadot-dapp@latest
 ```
 
+(the templates use `pnpm` as a package manager, so maybe do `npm install -g pnpm` first)
+
 ## Templates
 
 * [react-papi-tailwind](./templates/react-papi-tailwind):<br/>
