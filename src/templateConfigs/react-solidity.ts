@@ -15,10 +15,14 @@ const config: TemplateConfig = {
     /^package\.json/,
   ],
   instructions: `
-${c.secondary("Start remixd environment:")}
+${c.primary("Step 1: ")}${c.secondary("start remixd environment")}
 ${c.code("pnpm remixd")}
 
-${c.secondary("Start frontend app:")}
+${c.primary("Step 2: ")}\
+${c.secondary("after deploying and pinning smart contracts in remix, build the contracts")}
+${c.code("pnpm contracts:build")}
+
+${c.primary("Step 3: ")}${c.secondary("start frontend app")}
 ${c.code("pnpm frontend:dev")}`,
 };
 
