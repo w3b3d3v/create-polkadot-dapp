@@ -35,7 +35,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: package
-          path: "create-polkadot-dapp-*.tgz"
+          path: "dist/create-polkadot-dapp-*.tgz"
 
       - uses: octokit/request-action@v2.3.0
         with:
