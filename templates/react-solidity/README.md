@@ -8,17 +8,29 @@ This template includes
 * [Tailwind CSS](https://tailwindcss.com) + [Tailwind UI](https://tailwindui.com/).
 * [Vite](https://vite.dev/) for dev tooling.
 
-### Writing smart contracts
+## Writing smart contracts
 
-Currently, only Remix environment is supported.
+Currently, two ways of developing smart contracts are supported. Both are deploying to Westend Asset Hub.
+
+### Remix
 
 1. Run `pnpm remixd` to start remixd environment.
 2. Go to https://remix.polkadot.io and activate REMIXD plugin.
 3. Start hacking! Changes performed in Remix will be synced to local file system.
-4. After deploying and pinning a smart contract, it'll be saved on your file system, run `pnpm contracts:build` to
+4. After deploying and pinning a smart contract, it'll be saved on your file system, run `pnpm contracts:export` to
    export contract data.
 
-### Interacting with smart contracts from frontend app
+### Local development
+
+1. Edit smart contracts in root directory
+2. Run `pnpm contracts:build` to compile smart contracts
+3. Run `pnpm contracts:deploy` to deploy them  
+   Required environment variables:
+  * `ACCOUNT_SEED`: seed phrase for the account that will sign the deployment.
+  * `RPC_URL`: for Westend Asset Hub, probably `https://westend-asset-hub-eth-rpc.polkadot.io`, for kitchensink, probably `http://localhost:8545`
+4. Run `pnpm contracts:export` to export contract data.
+
+## Interacting with smart contracts from frontend app
 
 1. Run `pnpm frontend:dev` to start `vite` environment
 2. You can import all exported contracts using `import { contracts } from "contracts"`
@@ -34,7 +46,7 @@ const contract = new Contract(contractData.address, contractData.abi, signer);
 const transactionResponse = await contract.retrieve(); // method on your smart contract
 ```
 
-More info at:  
-* [contracts.polkadot.io](https://contracts.polkadot.io/): docs on smart contracts  
+More info at:
+* [contracts.polkadot.io](https://contracts.polkadot.io/): docs on smart contracts
 * [ethers docs](https://docs.ethers.org/v6/)  
 

@@ -8,7 +8,7 @@ import polkadotLogo from "./assets/polkadot-logo.svg";
 import { useNetworkData } from "./hooks/useNetworkData";
 
 function App() {
-  const contractData = contracts["12d7b1015d6888edbeb19610cfe518310405c685"];
+  const contractData = contracts["859Ac8969AdEa0C41393b3eAB299C5b32a0EA391"];
   const { storedValue, balance, chainId } = useNetworkData(contractData);
 
   return (

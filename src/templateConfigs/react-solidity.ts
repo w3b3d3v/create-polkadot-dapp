@@ -13,6 +13,7 @@ const config: TemplateConfig = {
     /^frontend\/src.*/,
     /^frontend\/package\.json/,
     /^package\.json/,
+    /^pnpm-lock\.yaml/,
   ],
   instructions: `
 ${c.primary("Step 1: ")}${c.secondary("start remixd environment")}
