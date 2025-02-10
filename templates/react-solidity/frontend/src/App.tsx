@@ -7,8 +7,15 @@ import "./App.css";
 import polkadotLogo from "./assets/polkadot-logo.svg";
 import { useNetworkData } from "./hooks/useNetworkData";
 
+const CONTRACT_ADDRESS = "859Ac8969AdEa0C41393b3eAB299C5b32a0EA391";
+
 function App() {
-  const contractData = contracts["859Ac8969AdEa0C41393b3eAB299C5b32a0EA391"];
+  if (!(CONTRACT_ADDRESS in contracts)) {
+    throw new Error(
+      `${CONTRACT_ADDRESS} is missing in contracts; have you build, deployed and exported the contract?`
+    );
+  }
+  const contractData = contracts[CONTRACT_ADDRESS];
   const { storedValue, balance, chainId } = useNetworkData(contractData);
 
   return (
@@ -34,7 +41,6 @@ function App() {
               <AddMoney contractData={contractData} />
             </div>
           </div>
-
         </div>
       ) : (
         <div className="container mx-auto p-2 leading-6">
