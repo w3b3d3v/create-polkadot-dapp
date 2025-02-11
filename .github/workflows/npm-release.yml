@@ -37,7 +37,10 @@ jobs:
           name: package
           path: "dist/create-polkadot-dapp-*.tgz"
 
-      - uses: octokit/request-action@v2.3.0
+      # v2.4.0
+      # Working around "Action not found"
+      # @see https://github.com/octokit/request-action/issues/315
+      - uses: octokit/request-action@bbedc70
         with:
           route: POST /repos/paritytech/npm_publish_automation/actions/workflows/publish.yml/dispatches
           ref: main
