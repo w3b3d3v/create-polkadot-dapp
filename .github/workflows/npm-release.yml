@@ -40,7 +40,7 @@ jobs:
       # v2.4.0
       # Working around "Action not found"
       # @see https://github.com/octokit/request-action/issues/315
-      - uses: octokit/request-action@bbedc70
+      - uses: octokit/request-action@bbedc70b1981e610d89f1f8de88311a1fc02fb83
         with:
           route: POST /repos/paritytech/npm_publish_automation/actions/workflows/publish.yml/dispatches
           ref: main
