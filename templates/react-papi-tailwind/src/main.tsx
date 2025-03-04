@@ -25,5 +25,5 @@ createRoot(document.getElementById("root")!).render(
     <ReactiveDotProvider config={config}>
       <ChainSelectAppWrapper />
     </ReactiveDotProvider>
-  </StrictMode>
+  </StrictMode>,
 );
