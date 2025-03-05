@@ -1,21 +1,12 @@
 import { polkadot, paseo, polkadot_asset_hub, paseo_asset_hub } from "@polkadot-api/descriptors";
 import { defineConfig } from "@reactive-dot/core";
+import { createLightClientProvider } from "@reactive-dot/core/providers/light-client.js";
 import { InjectedWalletProvider } from "@reactive-dot/core/wallets.js";
 import { LedgerWallet } from "@reactive-dot/wallet-ledger";
 // import { WalletConnect } from "@reactive-dot/wallet-walletconnect";
-import { chainSpec as polkadotChainSpec } from "polkadot-api/chains/polkadot";
-import { chainSpec as polkadotAHChainSpec } from "polkadot-api/chains/polkadot_asset_hub";
-import { chainSpec as paseoChainSpec } from "polkadot-api/chains/paseo";
-import { chainSpec as paseoAHChainSpec } from "polkadot-api/chains/paseo_asset_hub";
-import { getSmProvider } from "polkadot-api/sm-provider";
-import { startFromWorker } from "polkadot-api/smoldot/from-worker";
 import { registerDotConnect } from "dot-connect";
 
-const smoldot = startFromWorker(
-  new Worker(new URL("polkadot-api/smoldot/worker", import.meta.url), {
-    type: "module"
-  })
-);
+const lightClientProvider = createLightClientProvider();
 
 const wallets = [
   new InjectedWalletProvider(),
@@ -44,39 +35,32 @@ const wallets = [
   //})
 ];
 
-const polkadotChain = smoldot.addChain({ chainSpec: polkadotChainSpec });
-const polkadotAHChain = polkadotChain.then(chain => smoldot.addChain({
-  chainSpec: polkadotAHChainSpec,
-  potentialRelayChains: [chain]
-}));
+const polkadotChain = lightClientProvider.addRelayChain({ id: "polkadot" });
+const polkadotAHChain = polkadotChain.addParachain({ id: "polkadot_asset_hub" });
 
-const paseoChain = smoldot.addChain({ chainSpec: paseoChainSpec });
-const paseoAHChain = paseoChain.then(chain => smoldot.addChain({
-  chainSpec: paseoAHChainSpec,
-  potentialRelayChains: [chain]
-}));
-
+const paseoChain = lightClientProvider.addRelayChain({ id: "paseo" });
+const paseoAHChain = paseoChain.addParachain({ id: "paseo_asset_hub" });
 
 export const config = defineConfig({
   chains: {
     polkadot: {
       descriptor: polkadot,
-      provider: getSmProvider(polkadotChain)
+      provider: polkadotChain,
     },
     polkadot_asset_hub: {
       descriptor: polkadot_asset_hub,
-      provider: getSmProvider(polkadotAHChain)
+      provider: polkadotAHChain,
     },
     paseo: {
       descriptor: paseo,
-      provider: getSmProvider(paseoChain)
+      provider: paseoChain,
     },
     paseo_asset_hub: {
       descriptor: paseo_asset_hub,
-      provider: getSmProvider(paseoAHChain)
-    }
+      provider: paseoAHChain,
+    },
   },
-  wallets
+  wallets,
 });
 
 registerDotConnect({ wallets });

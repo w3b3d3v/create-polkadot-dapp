@@ -8,6 +8,8 @@
     "@eng-automation/js-style": "^3.1.0",
     "chokidar": "^4.0.1",
     "commander": "^12.1.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "type-fest": "^4.27.0",
     "typescript": "^5.4.5"
   },
@@ -26,9 +28,7 @@
     "lint": "npx eslint ./src/ --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npx eslint ./src/ --ext .js,.jsx,.ts,.tsx --fix"
   },
-  "bin": {
-    "create-polkadot-dapp": "src/bin/main.js"
-  },
+  "bin": "src/bin/main.js",
   "imports": {
     "#src/*": "./src/*.js"
   }

@@ -10,23 +10,19 @@ import polkadotLogo from "./assets/polkadot-logo.svg";
 
 import { AccountList } from "./components/AccountList";
 
-function App({ chainId, setChainId }: {
-  chainId: ChainId;
-  setChainId: React.Dispatch<React.SetStateAction<ChainId>>
-}) {
-
+function App({ chainId, setChainId }: { chainId: ChainId; setChainId: React.Dispatch<React.SetStateAction<ChainId>> }) {
   return (
     <>
-      <div className="fixed top-10 right-10">
-        <div className="inline-block ml-5">
+      <div className="fixed right-10 top-10">
+        <div className="ml-5 inline-block">
           <ConnectionButton />
         </div>
-        <div className="inline-block ml-5">
+        <div className="ml-5 inline-block">
           <ChainSwitch chainId={chainId} setChainId={setChainId} />
         </div>
       </div>
 
-      <img src={polkadotLogo} className="mx-auto h-52	p-4 logo" alt="Polkadot logo" />
+      <img src={polkadotLogo} className="logo mx-auto h-52 p-4" alt="Polkadot logo" />
       <div className="container mx-auto p-2 leading-6">
         <ChainPage />
       </div>
