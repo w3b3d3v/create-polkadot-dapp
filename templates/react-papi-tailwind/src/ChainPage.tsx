@@ -4,7 +4,7 @@ export function ChainPage() {
   const chainId = useChainId();
 
   const [timestamp, blockNumber] = useLazyLoadQuery((builder) =>
-    builder.readStorage("Timestamp", "Now", []).readStorage("System", "Number", []),
+    builder.storage("Timestamp", "Now").storage("System", "Number"),
   );
 
   return (
