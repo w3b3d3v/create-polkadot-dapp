@@ -12,12 +12,12 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
-    "@reactive-dot/core": "^0.38.1",
-    "@reactive-dot/react": "^0.38.1",
-    "@reactive-dot/wallet-ledger": "^0.16.31",
-    "@reactive-dot/wallet-walletconnect": "^0.17.11",
-    "dot-connect": "^0.17.0",
-    "polkadot-api": "^1.9.5",
+    "@reactive-dot/core": "^0.40.0",
+    "@reactive-dot/react": "^0.40.1",
+    "@reactive-dot/wallet-ledger": "^0.16.33",
+    "@reactive-dot/wallet-walletconnect": "^0.17.14",
+    "dot-connect": "^0.18.0",
+    "polkadot-api": "^1.10.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
