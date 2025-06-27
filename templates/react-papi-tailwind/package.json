@@ -12,8 +12,8 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
-    "@reactive-dot/core": "^0.40.0",
-    "@reactive-dot/react": "^0.40.1",
+    "@reactive-dot/core": "^0.43.1",
+    "@reactive-dot/react": "^0.43.1",
     "@reactive-dot/wallet-ledger": "^0.16.33",
     "@reactive-dot/wallet-walletconnect": "^0.17.14",
     "dot-connect": "^0.18.0",
