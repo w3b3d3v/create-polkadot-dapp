@@ -4,18 +4,6 @@ import { colors as c } from "#src/util/log";
 const config: TemplateConfig = {
   setupPapi: false,
   npmRoots: ["contracts", "frontend"],
-  backSyncPatterns: [
-    /^contracts$/,
-    /^contracts\/.+.sol/,
-    /^contracts\/package\.json/,
-    /^contracts\/tsconfig\.json/,
-    /^contracts\/src.*/,
-    /^frontend$/,
-    /^frontend\/src.*/,
-    /^frontend\/package\.json/,
-    /^package\.json/,
-    /^package-lock\.json/,
-  ],
   instructions: `
 ${c.primary("For Remix environment:")}
 ${c.primary("1. ")}${c.secondary("start remixd environment: ")}${c.code("pnpm remixd")}

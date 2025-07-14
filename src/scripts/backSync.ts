@@ -1,8 +1,9 @@
-import { availableTemplates, configs, TemplateNames } from "#src/templateConfigs/index";
+import { availableTemplates, TemplateNames } from "#src/templateConfigs/index";
 import { colors as c, success } from "#src/util/log";
 import chokidar from "chokidar";
 import { Option, program } from "commander";
 import fs from "fs";
+import ignore from "ignore";
 import * as process from "node:process";
 import path from "path";
 import { debuglog } from "util";
@@ -19,7 +20,10 @@ program
 program.parse();
 const options: { source: string; template: TemplateNames; rm: boolean } = program.opts();
 
-const config = configs[options.template];
+const alwaysIgnorePatterns = [/^\.papi\/metadata.*/];
+
+const gitignoreContents = fs.readFileSync(path.join(options.source, ".gitignore"), "utf-8");
+const gitignoreIg = ignore().add(gitignoreContents);
 
 const watcher = chokidar.watch(options.source, {
   persistent: true,
@@ -28,9 +32,11 @@ const watcher = chokidar.watch(options.source, {
   ignored: (updPath) => {
     if (updPath === options.source) return false;
     const relpath = path.relative(options.source, updPath);
-    const matched = config.backSyncPatterns.some((pattern) => pattern.test(relpath));
 
-    return !matched;
+    if (alwaysIgnorePatterns.some((pattern) => pattern.test(relpath))) return true;
+    if (gitignoreIg.ignores(relpath)) return true;
+
+    return false;
   },
 });
 

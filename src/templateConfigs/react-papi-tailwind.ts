@@ -3,7 +3,6 @@ import { colors as c } from "#src/util/log";
 
 const config: TemplateConfig = {
   setupPapi: true,
-  backSyncPatterns: [/^src.*/],
   npmRoots: ["/"],
   instructions: `
 ${c.secondary("Start app:")}

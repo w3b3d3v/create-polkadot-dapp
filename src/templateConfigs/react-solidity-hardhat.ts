@@ -4,22 +4,6 @@ import { colors as c } from "#src/util/log";
 const config: TemplateConfig = {
   setupPapi: false,
   npmRoots: ["contracts", "frontend"],
-  backSyncPatterns: [
-    /^contracts$/,
-    /^contracts\/contracts.*/,
-    /^contracts\/ignition$/,
-    /^contracts\/ignition.*/,
-    /^contracts\/test.*/,
-    /^contracts\/package\.json/,
-    /^contracts\/package-lock\.json/,
-    /^contracts\/tsconfig\.json/,
-    /^contracts\/hardhat.config.ts/,
-    /^frontend$/,
-    /^frontend\/src.*/,
-    /^frontend\/package\.json/,
-    /^frontend\/package-lock\.json/,
-    /^README.md$/,
-  ],
   instructions: `
 ${c.primary("Develop smart contracts:")}
 ${c.primary("1. ")}${c.secondary("set up hardhat environment (see README.md): ")}
