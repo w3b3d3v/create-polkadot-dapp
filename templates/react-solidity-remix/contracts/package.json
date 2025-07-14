@@ -1,24 +1,21 @@
 {
-  "name": "contracts",
+  "name": "my-polkadot-dapp-sol",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "remixd": "npx remixd -s . -u https://remix.polkadot.io",
-    "export": "npx tsc && node dist/exportContracts.js",
     "build": "npx tsc && node dist/build.js",
     "deploy-contracts": "npx tsc && node dist/deploy.js"
   },
-  "main": "dist/index.js",
   "devDependencies": {
-    "@parity/revive": "^0.0.7",
+    "@parity/resolc": "^0.3.0",
     "@polkadot-labs/hdkd": "^0.0.10",
     "@polkadot-labs/hdkd-helpers": "^0.0.10",
-    "@remix-project/remixd": "^0.6.40",
     "@scure/bip32": "^1.6.1",
     "@scure/bip39": "^1.5.1",
-    "ethers": "^6.13.4",
+    "ethers": "^6.15.0",
     "micro-sr25519": "^0.1.0",
-    "typescript": "~5.6.2"
+    "typescript": "~5.8.3"
   }
 }

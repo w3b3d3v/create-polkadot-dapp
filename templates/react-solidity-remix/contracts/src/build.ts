@@ -1,4 +1,4 @@
-import { compile } from "@parity/revive";
+import { compile } from "@parity/resolc";
 import { readFileSync, writeFileSync, readdirSync, rmSync, mkdirSync } from "fs";
 import path from "path";
 

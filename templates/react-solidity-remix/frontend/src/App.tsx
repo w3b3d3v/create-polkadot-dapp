@@ -1,4 +1,4 @@
-import { contracts } from "contracts";
+import { contracts } from "./contracts";
 import { ethersProvider } from "./ethersProvider";
 import { StoreNumber } from "./components/StoreNumber";
 import { AddMoney } from "./components/AddMoney";
@@ -7,7 +7,7 @@ import "./App.css";
 import polkadotLogo from "./assets/polkadot-logo.svg";
 import { useNetworkData } from "./hooks/useNetworkData";
 
-const CONTRACT_ADDRESS = "859Ac8969AdEa0C41393b3eAB299C5b32a0EA391";
+const CONTRACT_ADDRESS = "f7b90aa295bcf3b17e2ac37e881c50f4c8e7ee73";
 
 function App() {
   if (!(CONTRACT_ADDRESS in contracts)) {

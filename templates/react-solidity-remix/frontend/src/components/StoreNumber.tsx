@@ -1,5 +1,4 @@
-import { ContractData } from "contracts";
-
+import { ContractData } from "../contracts";
 import { useTransactionStore } from "../hooks/useTransactionStore";
 
 enum Status {Initial, Loading, Success, Revert};

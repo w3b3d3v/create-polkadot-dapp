@@ -9,10 +9,10 @@ let dirEntries: fs.Dirent[] = [];
 
 try {
   dirEntries.push(
-    ...fs.readdirSync(path.join(".deploys", "pinned-contracts"), { recursive: true, withFileTypes: true }),
+    ...fs.readdirSync(path.join("..", "contracts", ".deploys", "pinned-contracts"), { recursive: true, withFileTypes: true }),
   );
   dirEntries.push(
-    ...fs.readdirSync(path.join(".deploys", "deployed-contracts"), { recursive: true, withFileTypes: true }),
+    ...fs.readdirSync(path.join("..", "contracts", ".deploys", "deployed-contracts"), { recursive: true, withFileTypes: true }),
   );
 } catch (e: unknown) {
   // One of those dirs can not exist, and it's fine
@@ -42,7 +42,7 @@ for (const entry of dirEntries) {
 }
 
 res += "};";
-const outPath = path.join("dist", "contracts.js");
+const outPath = path.join("src", "contracts.js");
 fs.writeFileSync(outPath, res);
 
 console.log(`Exported contracts to ${outPath}`);

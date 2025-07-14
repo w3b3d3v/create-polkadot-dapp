@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { Contract, ContractTransactionResponse } from "ethers";
-import { ContractData } from "contracts";
+import { ContractData } from "../contracts";
 import { ethersProvider } from "../ethersProvider";
 
 enum Status {Initial, Loading, Success, Revert};

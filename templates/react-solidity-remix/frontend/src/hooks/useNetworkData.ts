@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Contract, formatEther } from "ethers";
-import { ContractData } from "contracts";
+import { ContractData } from "../contracts";
 import { ethersProvider } from "../ethersProvider";
 
 export function useNetworkData(contractData: ContractData) {

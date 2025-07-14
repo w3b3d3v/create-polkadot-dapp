@@ -18,7 +18,7 @@ npx create-polkadot-dapp@latest
   * [wagmi](https://wagmi.sh/) for smart contract interaction.
   * [Tailwind CSS](https://tailwindcss.com) + [Tailwind UI](https://tailwindui.com/).
   * [Vite](https://vite.dev/) for dev tooling.
-* [react-solidity](https://github.com/paritytech/create-polkadot-dapp/tree/master/templates/react-solidity) (deprecated) a monorepo for smart contracts for AssetHub and a React, [Tailwind CSS](https://tailwindcss.com) and [ethers](https://docs.ethers.org/v6/)
+* [react-solidity-remix](https://github.com/paritytech/create-polkadot-dapp/tree/master/templates/react-solidity) (deprecated) a monorepo for smart contracts for AssetHub and a React, [Tailwind CSS](https://tailwindcss.com) and [ethers](https://docs.ethers.org/v6/)
 
 ## Planned templates
 * papi-nodejs: pure server-side application with polkadot-api
@@ -40,4 +40,4 @@ Add new configuration to `src/templateConfigs/` and export it from `index.ts`. T
 ### Back sync
 It can be more convenient to develop template code outside of `create-polkadot-dapp`.  
 Use `yarn back-sync --source <spawned_repo_path> --template <template_name>` to sync files from a spawned repo back into the template.  
-`backSyncPatterns` in template configuration defines an array of regexp for files that are synced.  
+`back-sync` uses `.gitignore` to filter out files that need syncing.  
