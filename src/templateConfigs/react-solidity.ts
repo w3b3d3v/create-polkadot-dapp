@@ -3,6 +3,7 @@ import { colors as c } from "#src/util/log";
 
 const config: TemplateConfig = {
   setupPapi: false,
+  npmRoots: ["contracts", "frontend"],
   backSyncPatterns: [
     /^contracts$/,
     /^contracts\/.+.sol/,
@@ -13,7 +14,7 @@ const config: TemplateConfig = {
     /^frontend\/src.*/,
     /^frontend\/package\.json/,
     /^package\.json/,
-    /^pnpm-lock\.yaml/,
+    /^package-lock\.json/,
   ],
   instructions: `
 ${c.primary("For Remix environment:")}

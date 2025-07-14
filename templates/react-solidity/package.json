@@ -16,7 +16,5 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@remix-project/remixd": "^0.6.40",
-    "typescript": "~5.6.2"
   }
 }
