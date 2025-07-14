@@ -1,0 +1,5 @@
+node_modules
+.env
+
+# Wagmi generated types
+src/generated.ts

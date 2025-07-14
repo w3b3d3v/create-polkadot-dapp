@@ -12,7 +12,7 @@ export async function spawnTemplate(dappData: DappData): Promise<void> {
 
   await copyTemplate(dappData, targetDir, templatesDir);
   await updateFiles(dappData, targetDir);
-  await installDeps(targetDir);
+  await installDeps(targetDir, dappData);
   if (dappData.config.setupPapi) {
     await setupPapi(targetDir);
   }
@@ -46,18 +46,22 @@ async function copyTemplate(dappData: DappData, targetDir: string, templatesDir:
 async function updateFiles(dappData: DappData, targetDir: string): Promise<void> {
   console.log(c.primary("Updating template files..."));
 
-  const pkgJsonPath = path.join(targetDir, "package.json");
-  const pkgJsonContent = JSON.parse(await fs.readFile(pkgJsonPath, "utf8")) as PackageJson;
+  for (const root of dappData.config.npmRoots) {
+    const pkgJsonPath = path.join(targetDir, root, "package.json");
+    const pkgJsonContent = JSON.parse(await fs.readFile(pkgJsonPath, "utf8")) as PackageJson;
 
-  pkgJsonContent.name = dappData.name;
+    pkgJsonContent.name = dappData.name;
 
-  await fs.writeFile(pkgJsonPath, JSON.stringify(pkgJsonContent, null, 2));
+    await fs.writeFile(pkgJsonPath, JSON.stringify(pkgJsonContent, null, 2));
+  }
 }
 
-async function installDeps(targetDir: string): Promise<void> {
+async function installDeps(targetDir: string, dappData: DappData): Promise<void> {
   console.log(c.primary("Installing dependencies..."));
 
-  await spawnAndWait("pnpm", ["install"], { cwd: targetDir });
+  for (const root of dappData.config.npmRoots) {
+    await spawnAndWait("npm", ["install"], { cwd: path.join(targetDir, root) });
+  }
 }
 
 async function setupPapi(targetDir: string): Promise<void> {
