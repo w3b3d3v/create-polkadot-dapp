@@ -28,7 +28,29 @@ Contracts are written in `contracts/contracts`. Each smart contract has a Hardha
 1. Edit smart contracts in `contracts/contracts`
 2. Edit ignition module in `contracts/igniton/modules`
 3. Run `npx hardhat compile` to compile smart contracts
-4. Run `npx hardhat ignition deploy ./ignition/modules/<ModuleName>.ts --network polkadotHubTestnet` to deploy them  
+4. Run `npx hardhat ignition deploy ./ignition/modules/<ModuleName>.ts --network polkadotHubTestnet` to deploy them
+
+### Note on committing `ignition/deployments`
+
+This is a directory that contains build and deployment artifacts from `hardhat`.
+They aren't ignored, becuase they are used for types generation for frontend: if there's a smart contract already deployed, you may want to keep it in git, so a fresh clone would give you a working frontend.  
+
+However, several issues with hardhat are resolved by removing `ignition/deployments` directory, to start fresh deployment. These issues include:  
+
+```
+An unexpected error occurred:
+
+Error: Could not parse row {...
+```
+
+```
+[ MyTokenModule ] reconciliation failed ⛔
+
+The module contains changes to executed futures:
+...
+```
+
+In such cases, do `rm -rf ignition/deployments`, deploy the new contract, and commit the artifacts anew :)
 
 ## 2. Interacting with smart contracts from frontend app
 
@@ -47,30 +69,6 @@ writeContract({
   functionName: "mint",
   args: [address, BigInt(amount) * (10n ** BigInt(params.decimals))]
 });
-```
-
-## Troubleshooting
-
-### hardhat errors
-
-Several different problems have one solution: clear old deployment artifacts:
-```sh
-rm -rf ignition/deployments
-```
-
-These issues include following:
-
-```
-An unexpected error occurred:
-
-Error: Could not parse row {...
-```
-
-```
-[ MyTokenModule ] reconciliation failed ⛔
-
-The module contains changes to executed futures:
-...
 ```
 
 More info at:
