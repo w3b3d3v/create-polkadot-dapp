@@ -1,8 +1,9 @@
-import { TemplateConfig } from "#src/templateConfigs/index";
+import { TemplateConfig, TemplateType } from "#src/types";
 import { colors as c } from "#src/util/log";
 
 const config: TemplateConfig = {
-  setupPapi: false,
+  templateType: TemplateType.Deprecated,
+  description: "Solidity template with remix/ethers environment + ethers-based frontend",
   npmRoots: ["contracts", "frontend"],
   instructions: `
 ${c.primary("For Remix environment:")}

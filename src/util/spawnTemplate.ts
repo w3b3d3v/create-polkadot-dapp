@@ -13,8 +13,8 @@ export async function spawnTemplate(dappData: DappData): Promise<void> {
   await copyTemplate(dappData, targetDir, templatesDir);
   await updateFiles(dappData, targetDir);
   await installDeps(targetDir, dappData);
-  if (dappData.config.setupPapi) {
-    await setupPapi(targetDir);
+  if (dappData.config.postinstallScript) {
+    await spawnAndWait("bash", ["-c", dappData.config.postinstallScript], { cwd: targetDir, shell: false });
   }
 
   console.log(
@@ -54,6 +54,8 @@ async function updateFiles(dappData: DappData, targetDir: string): Promise<void>
 
     await fs.writeFile(pkgJsonPath, JSON.stringify(pkgJsonContent, null, 2));
   }
+
+  await fs.rename(path.join(targetDir, "gitignore"), path.join(targetDir, ".gitignore"));
 }
 
 async function installDeps(targetDir: string, dappData: DappData): Promise<void> {
@@ -62,21 +64,4 @@ async function installDeps(targetDir: string, dappData: DappData): Promise<void>
   for (const root of dappData.config.npmRoots) {
     await spawnAndWait("npm", ["install"], { cwd: path.join(targetDir, root) });
   }
-}
-
-async function setupPapi(targetDir: string): Promise<void> {
-  console.log(c.primary("Setting up polkadot-api..."));
-
-  await spawnAndWait("npx", ["papi", "add", "--skip-codegen", "-n", "paseo", "paseo"], { cwd: targetDir });
-  await spawnAndWait("npx", ["papi", "add", "--skip-codegen", "-n", "paseo_asset_hub", "paseo_asset_hub"], {
-    cwd: targetDir,
-  });
-  await spawnAndWait("npx", ["papi", "add", "--skip-codegen", "-n", "polkadot", "polkadot"], {
-    cwd: targetDir,
-  });
-  await spawnAndWait("npx", ["papi", "add", "--skip-codegen", "-n", "polkadot_asset_hub", "polkadot_asset_hub"], {
-    cwd: targetDir,
-  });
-
-  await spawnAndWait("npx", ["papi"], { cwd: targetDir });
 }
