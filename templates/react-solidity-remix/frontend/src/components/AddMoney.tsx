@@ -1,6 +1,6 @@
-import { ContractData } from "contracts";
 import { parseEther } from "ethers";
 
+import { ContractData } from "../contracts";
 import { useTransactionStore } from "../hooks/useTransactionStore";
 
 enum Status {Initial, Loading, Success, Revert};

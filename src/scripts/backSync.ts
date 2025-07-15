@@ -25,6 +25,11 @@ const alwaysIgnorePatterns = [/^\.papi\/metadata.*/];
 const gitignoreContents = fs.readFileSync(path.join(options.source, ".gitignore"), "utf-8");
 const gitignoreIg = ignore().add(gitignoreContents);
 
+if (!fs.existsSync(options.source)) {
+  console.error(`Directory ${options.source} doesn't exist`);
+  process.exit(1);
+}
+
 const watcher = chokidar.watch(options.source, {
   persistent: true,
   cwd: options.source,
@@ -92,3 +97,5 @@ if (options.rm) {
   watcher.on("unlink", unlinkHandler);
   watcher.on("unlinkDir", unlinkHandler);
 }
+
+watcher.on("error", (error) => console.error(`Watcher error: ${error}`));
