@@ -2,7 +2,6 @@ import { TemplateConfig } from "#src/templateConfigs/index";
 import { colors as c } from "#src/util/log";
 
 const config: TemplateConfig = {
-  setupPapi: false,
   npmRoots: ["contracts", "frontend"],
   instructions: `
 ${c.primary("For Remix environment:")}

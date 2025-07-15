@@ -20,7 +20,7 @@ program
 program.parse();
 const options: { source: string; template: TemplateNames; rm: boolean } = program.opts();
 
-const alwaysIgnorePatterns = [/^\.papi\/metadata.*/, /^\.gitignore$/];
+const alwaysIgnorePatterns = [/^\.papi\/metadata.*/, /^\.papi\/descriptors.*/, /^\.gitignore$/];
 
 const gitignoreContents = fs.readFileSync(path.join(options.source, ".gitignore"), "utf-8");
 const gitignoreIg = ignore().add(gitignoreContents);

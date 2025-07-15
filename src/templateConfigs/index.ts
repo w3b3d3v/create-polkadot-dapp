@@ -3,9 +3,9 @@ import reactSolidityHardhat from "./react-solidity-hardhat";
 import reactSolidityRemix from "./react-solidity-remix";
 
 export type TemplateConfig = {
-  setupPapi: boolean;
   instructions: string;
   npmRoots: string[];
+  postinstallScript?: string;
 };
 
 export const configs: Record<string, TemplateConfig> = {
