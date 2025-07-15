@@ -35,7 +35,11 @@ npx --yes --package=<path-to-create-polkadot-dapp>/dist create-polkadot-dapp
 
 ### Adding new template
 Add sources to `templates/` directory. These will be copied to target directory.  
-Add new configuration to `src/templateConfigs/` and export it from `index.ts`. The exported name must match the directory name in `templates/`.
+Add new configuration to `src/templateConfigs/` and export it from `index.ts`. The exported name must match the directory name in `templates/`.  
+
+#### Note on `.gitignore`
+`yarn pack` doesn't include `.gitignore` files into the package, even if manually included into `files` section in package.json.  
+To circumvent this, we're placing `gitignore` (without the dot) files in the templates instead, and renaming the files after spawning.  
 
 ### Back sync
 It can be more convenient to develop template code outside of `create-polkadot-dapp`.  

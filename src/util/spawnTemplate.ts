@@ -54,6 +54,8 @@ async function updateFiles(dappData: DappData, targetDir: string): Promise<void>
 
     await fs.writeFile(pkgJsonPath, JSON.stringify(pkgJsonContent, null, 2));
   }
+
+  await fs.rename(path.join(targetDir, "gitignore"), path.join(targetDir, ".gitignore"));
 }
 
 async function installDeps(targetDir: string, dappData: DappData): Promise<void> {
