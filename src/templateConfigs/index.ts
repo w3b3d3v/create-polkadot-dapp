@@ -1,12 +1,8 @@
+import { TemplateConfig } from "#src/types";
+
 import reactPapiTailwind from "./react-papi-tailwind";
 import reactSolidityHardhat from "./react-solidity-hardhat";
 import reactSolidityRemix from "./react-solidity-remix";
-
-export type TemplateConfig = {
-  instructions: string;
-  npmRoots: string[];
-  postinstallScript?: string;
-};
 
 export const configs: Record<string, TemplateConfig> = {
   "react-papi-tailwind": reactPapiTailwind,
